@@ -3,6 +3,7 @@
 #include <climits>
 using namespace std;
 
+// este codigo aun tira time exceeded
 
 int main(){
 
@@ -22,31 +23,29 @@ int main(){
     
     for(int i = 0; i <n-2; i++){
 
+        int menor, mayor, puente;
+        menor = INT_MAX;
+        mayor = 0;
+        
+        for(int j = i+2; j< n; j++){
+       
 
-        for(int j = i+1; j< n; j++){
 
-
-            int puente;
             if (mountains.at(i) > mountains.at(j)){
                 puente = mountains.at(j);
             }else{
                 puente = mountains.at(i);
             }
 
-            int k = i+1,  menor, mayor;
-
-            menor = INT_MAX;
-            mayor = 0;
-
-            while(k < j){
-                if(mountains.at(k) < menor){
-                    menor = mountains.at(k);
-                } 
-                if(mountains.at(k) > mayor){
-                    mayor = mountains.at(k);
-                }
-                k++;
+            if(mountains.at(j-1) > mayor){
+                mayor = mountains.at(j-1);
             }
+            if(mountains.at(j-1) < menor){
+                menor = mountains.at(j-1);
+            }
+            
+            
+            
             if (mayor < puente){
                 int altura;
                 altura = puente - menor;
